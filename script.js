@@ -1,75 +1,63 @@
-// DOM Elements
-const themeToggle = document.getElementById("theme-toggle")
-const themeIcon = document.querySelector(".theme-toggle__icon")
-const navToggle = document.getElementById("nav-toggle")
-const navMenu = document.getElementById("nav-menu")
-const navClose = document.getElementById("nav-close")
-const navLinks = document.querySelectorAll(".nav__link")
-const contactForm = document.getElementById("contact-form")
-
 // Theme Toggle Functionality
-let isDarkMode = true
+const themeToggle = document.getElementById("themeToggle")
+const body = document.body
+const themeIcon = document.querySelector(".theme-icon")
 
 themeToggle.addEventListener("click", () => {
-  isDarkMode = !isDarkMode
+  body.classList.toggle("light-theme")
+  body.classList.toggle("dark-theme")
 
-  if (isDarkMode) {
-    document.body.classList.remove("light-mode")
-    document.body.classList.add("dark-mode")
-    themeIcon.textContent = "🌙"
-  } else {
-    document.body.classList.remove("dark-mode")
-    document.body.classList.add("light-mode")
+  if (body.classList.contains("light-theme")) {
     themeIcon.textContent = "☀️"
+    localStorage.setItem("theme", "light")
+  } else {
+    themeIcon.textContent = "🌙"
+    localStorage.setItem("theme", "dark")
   }
 })
 
-// Mobile Navigation
-navToggle.addEventListener("click", () => {
-  navMenu.classList.add("show-menu")
-})
-
-navClose.addEventListener("click", () => {
-  navMenu.classList.remove("show-menu")
-})
-
-// Close mobile menu when clicking on nav links
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    navMenu.classList.remove("show-menu")
-  })
-})
+// Load saved theme
+const savedTheme = localStorage.getItem("theme")
+if (savedTheme === "light") {
+  body.classList.remove("dark-theme")
+  body.classList.add("light-theme")
+  themeIcon.textContent = "☀️"
+}
 
 // Smooth Scrolling for Navigation Links
-navLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
     e.preventDefault()
-    const targetId = link.getAttribute("href")
-    const targetSection = document.querySelector(targetId)
-
-    if (targetSection) {
-      const headerHeight = document.querySelector(".header").offsetHeight
-      const targetPosition = targetSection.offsetTop - headerHeight
-
-      window.scrollTo({
-        top: targetPosition,
+    const target = document.querySelector(this.getAttribute("href"))
+    if (target) {
+      target.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       })
     }
   })
 })
 
-// Header Background on Scroll
-window.addEventListener("scroll", () => {
-  const header = document.querySelector(".header")
-  if (window.scrollY > 100) {
-    header.style.background = isDarkMode ? "rgba(13, 13, 13, 0.98)" : "rgba(255, 255, 255, 0.98)"
-  } else {
-    header.style.background = "rgba(13, 13, 13, 0.95)"
-  }
+// Scroll Animation Observer
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: "0px 0px -50px 0px",
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("animate")
+    }
+  })
+}, observerOptions)
+
+// Observe all elements with animate-on-scroll class
+document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+  observer.observe(el)
 })
 
-// Animated Counter Function
+// Counter Animation
 function animateCounter(element, target, duration = 2000) {
   let start = 0
   const increment = target / (duration / 16)
@@ -85,46 +73,39 @@ function animateCounter(element, target, duration = 2000) {
   }, 16)
 }
 
-// Intersection Observer for Animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
+// Trigger counter animation when stats section is visible
+const statsObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const counters = entry.target.querySelectorAll(".stat-number")
+        counters.forEach((counter) => {
+          const target = Number.parseInt(counter.getAttribute("data-target"))
+          animateCounter(counter, target)
+        })
+        statsObserver.unobserve(entry.target)
+      }
+    })
+  },
+  { threshold: 0.5 },
+)
+
+const statsSection = document.querySelector(".stats")
+if (statsSection) {
+  statsObserver.observe(statsSection)
 }
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("aos-animate")
-
-      // Animate counters when stats section is visible
-      if (entry.target.classList.contains("stat__number")) {
-        const target = Number.parseInt(entry.target.getAttribute("data-target"))
-        animateCounter(entry.target, target)
-      }
-    }
-  })
-}, observerOptions)
-
-// Observe all elements with data-aos attribute
-document.querySelectorAll("[data-aos]").forEach((el) => {
-  observer.observe(el)
-})
-
-// Observe stat numbers for counter animation
-document.querySelectorAll(".stat__number").forEach((el) => {
-  observer.observe(el)
-})
-
 // Contact Form Handling
-contactForm.addEventListener("submit", (e) => {
+const contactForm = document.getElementById("contactForm")
+contactForm.addEventListener("submit", function (e) {
   e.preventDefault()
 
-  const formData = new FormData(contactForm)
+  const formData = new FormData(this)
   const name = formData.get("name")
   const email = formData.get("email")
   const message = formData.get("message")
 
-  // Basic validation
+  // Simple validation
   if (!name || !email || !message) {
     alert("Please fill in all fields.")
     return
@@ -138,123 +119,43 @@ contactForm.addEventListener("submit", (e) => {
   }
 
   // Success message
-  alert(`Thank you, ${name}! Your inquiry has been sent. We'll get back to you soon.`)
+  alert(`Thank you, ${name}! Your message has been sent. We'll get back to you soon.`)
 
   // Reset form
-  contactForm.reset()
+  this.reset()
 })
 
-// Add loading animation to buttons
-document.querySelectorAll(".btn").forEach((btn) => {
-  btn.addEventListener("click", function (e) {
-    // Create ripple effect
-    const ripple = document.createElement("span")
-    const rect = this.getBoundingClientRect()
-    const size = Math.max(rect.width, rect.height)
-    const x = e.clientX - rect.left - size / 2
-    const y = e.clientY - rect.top - size / 2
+// Mobile Menu Toggle (for future enhancement)
+const mobileMenuToggle = document.getElementById("mobileMenuToggle")
+const navLinks = document.querySelector(".nav-links")
 
-    ripple.style.width = ripple.style.height = size + "px"
-    ripple.style.left = x + "px"
-    ripple.style.top = y + "px"
-    ripple.classList.add("ripple")
-
-    this.appendChild(ripple)
-
-    setTimeout(() => {
-      ripple.remove()
-    }, 600)
-  })
+mobileMenuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("mobile-active")
+  mobileMenuToggle.classList.toggle("active")
 })
 
-// Add ripple effect styles
-const style = document.createElement("style")
-style.textContent = `
-    .btn {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.6);
-        transform: scale(0);
-        animation: ripple-animation 0.6s linear;
-        pointer-events: none;
-    }
-    
-    @keyframes ripple-animation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-`
-document.head.appendChild(style)
-
-// Parallax effect for hero section
+// Header Background on Scroll
 window.addEventListener("scroll", () => {
-  const scrolled = window.pageYOffset
-  const heroPattern = document.querySelector(".hero__pattern")
-
-  if (heroPattern) {
-    heroPattern.style.transform = `translateY(${scrolled * 0.5}px)`
+  const header = document.querySelector(".header")
+  if (window.scrollY > 100) {
+    header.style.backgroundColor = body.classList.contains("light-theme")
+      ? "rgba(255, 255, 255, 0.95)"
+      : "rgba(13, 13, 13, 0.95)"
+  } else {
+    header.style.backgroundColor = body.classList.contains("light-theme") ? "#FFFFFF" : "#0D0D0D"
   }
 })
 
-// Add active state to navigation links based on scroll position
+// Parallax Effect for Hero Section
 window.addEventListener("scroll", () => {
-  const sections = document.querySelectorAll("section[id]")
-  const scrollPos = window.scrollY + 200
-
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop
-    const sectionHeight = section.offsetHeight
-    const sectionId = section.getAttribute("id")
-
-    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-      navLinks.forEach((link) => {
-        link.classList.remove("active")
-        if (link.getAttribute("href") === `#${sectionId}`) {
-          link.classList.add("active")
-        }
-      })
-    }
-  })
+  const scrolled = window.pageYOffset
+  const heroImage = document.querySelector(".hero-image img")
+  if (heroImage) {
+    heroImage.style.transform = `translateY(${scrolled * 0.5}px)`
+  }
 })
 
-// Add active link styles
-const activeStyle = document.createElement("style")
-activeStyle.textContent = `
-    .nav__link.active {
-        color: var(--accent-color);
-        position: relative;
-    }
-    
-    .nav__link.active::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: var(--accent-color);
-        border-radius: 1px;
-    }
-`
-document.head.appendChild(activeStyle)
-
-// Initialize animations on page load
-document.addEventListener("DOMContentLoaded", () => {
-  // Add entrance animation to hero content
-  const heroContent = document.querySelector(".hero__content")
-  heroContent.style.opacity = "0"
-  heroContent.style.transform = "translateY(30px)"
-
-  setTimeout(() => {
-    heroContent.style.transition = "all 1s ease"
-    heroContent.style.opacity = "1"
-    heroContent.style.transform = "translateY(0)"
-  }, 500)
+// Add loading animation
+window.addEventListener("load", () => {
+  document.body.classList.add("loaded")
 })
