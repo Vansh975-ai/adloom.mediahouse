@@ -3,94 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adloom Mediahouse - Digital Marketing & Branding Agency</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Adloom Mediahouse - Your Brand, Our Mission</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="dark-mode">
+<body class="dark-theme">
     <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav container">
-            <div class="nav__logo">
-                <h2>Adloom</h2>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <h2>Adloom Mediahouse</h2>
             </div>
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="#home" class="nav__link">Home</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#about" class="nav__link">About</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#services" class="nav__link">Services</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#stats" class="nav__link">Stats</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#contact" class="nav__link">Contact</a>
-                    </li>
-                </ul>
-                <div class="nav__close" id="nav-close">
-                    <span>&times;</span>
-                </div>
-            </div>
-            <div class="nav__actions">
-                <div class="theme-toggle" id="theme-toggle">
-                    <span class="theme-toggle__icon">🌙</span>
-                </div>
-                <div class="nav__toggle" id="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero__container container">
-            <div class="hero__content">
-                <h1 class="hero__title">Your Brand, Our Mission.</h1>
-                <p class="hero__subtitle">Affordable Digital Solutions That Work.</p>
-                <a href="#contact" class="hero__cta btn">Contact Us</a>
-            </div>
-            <div class="hero__bg">
-                <div class="hero__pattern"></div>
-            </div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">Your Brand, Our Mission.</h1>
+            <p class="hero-subtitle animate-fade-in">Affordable Digital Solutions That Work.</p>
+            <a href="#contact" class="cta-button animate-fade-in">Contact Us</a>
+        </div>
+        <div class="hero-image">
+            <img src="/images/hero.jpg" alt="Digital Marketing Solutions" />
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about section" id="about">
+    <!-- About Us Section -->
+    <section id="about" class="about">
         <div class="container">
-            <h2 class="section__title">About Us</h2>
-            <p class="about__description">
-                Adloom Mediahouse is a creative marketing and branding agency helping startups and small businesses grow through affordable digital strategies.
+            <h2 class="section-title">About Us</h2>
+            <p class="about-intro">
+                At Adloom Mediahouse, we specialize in delivering comprehensive digital marketing solutions 
+                that help businesses grow their online presence and achieve measurable results. Our team of 
+                experts combines creativity with data-driven strategies to deliver exceptional value.
             </p>
-            <div class="about__founders">
-                <div class="founder__card" data-aos="fade-up">
-                    <div class="founder__avatar">
-                        <span>VC</span>
+            <div class="founders">
+                <div class="founder-card animate-on-scroll">
+                    <div class="founder-image">
+                        <img src="/images/vansh.jpg" alt="Vansh Chauhan" />
                     </div>
-                    <div class="founder__info">
-                        <h3 class="founder__name">Vansh Chauhan</h3>
-                        <p class="founder__title">Founder</p>
-                        <p class="founder__education">IIM Bangalore</p>
-                        <p class="founder__specialization">Digital Business & Entrepreneurship</p>
+                    <div class="founder-info">
+                        <h3>Vansh Chauhan</h3>
+                        <p>IIM Bangalore</p>
+                        <span>Digital Business & Entrepreneurship</span>
                     </div>
                 </div>
-                <div class="founder__card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="founder__avatar">
-                        <span>KB</span>
+                <div class="founder-card animate-on-scroll">
+                    <div class="founder-image">
+                        <img src="/images/kshitij.jpg" alt="Kshitij Bhardwaj" />
                     </div>
-                    <div class="founder__info">
-                        <h3 class="founder__name">Kshitij Bhardwaj</h3>
-                        <p class="founder__title">Co-founder</p>
-                        <p class="founder__education">IMS Ghaziabad</p>
-                        <p class="founder__specialization">Business Strategy & Operations</p>
+                    <div class="founder-info">
+                        <h3>Kshitij Bhardwaj</h3>
+                        <p>Co-founder</p>
+                        <span>Strategic Growth & Operations</span>
                     </div>
                 </div>
             </div>
@@ -98,120 +78,155 @@
     </section>
 
     <!-- Services Section -->
-    <section class="services section" id="services">
+    <section id="services" class="services">
         <div class="container">
-            <h2 class="section__title">Our Services</h2>
-            <div class="services__grid">
-                <div class="service__card" data-aos="fade-up">
-                    <div class="service__icon">📱</div>
-                    <h3 class="service__title">Social Media Marketing</h3>
-                    <p class="service__description">Strategy, content, and audience engagement across platforms.</p>
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="/images/smm.jpg" alt="Social Media Marketing" />
+                    </div>
+                    <h3>Social Media Marketing</h3>
+                    <p>Build your brand presence across all social platforms with engaging content and strategic campaigns.</p>
                 </div>
-                <div class="service__card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service__icon">🎯</div>
-                    <h3 class="service__title">Meta Ads</h3>
-                    <p class="service__description">End-to-end campaign creation, optimization & analytics for Instagram, Facebook, YouTube.</p>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="/images/metaads.jpg" alt="Meta Ads" />
+                    </div>
+                    <h3>Meta Ads</h3>
+                    <p>Targeted Facebook and Instagram advertising campaigns that drive conversions and maximize ROI.</p>
                 </div>
-                <div class="service__card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service__icon">🎨</div>
-                    <h3 class="service__title">Branding & Visual Identity</h3>
-                    <p class="service__description">Logo, brand kit, typography, color palette design.</p>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="/images/branding.jpg" alt="Branding" />
+                    </div>
+                    <h3>Branding</h3>
+                    <p>Complete brand identity solutions including logo design, brand guidelines, and visual assets.</p>
                 </div>
-                <div class="service__card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service__icon">🔍</div>
-                    <h3 class="service__title">SEO & Content Strategy</h3>
-                    <p class="service__description">Keyword optimization, blogs, meta tags for better visibility.</p>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="/images/seo.jpg" alt="SEO & Content Strategy" />
+                    </div>
+                    <h3>SEO & Content Strategy</h3>
+                    <p>Improve your search rankings with optimized content and comprehensive SEO strategies.</p>
                 </div>
-                <div class="service__card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service__icon">💻</div>
-                    <h3 class="service__title">Website Design & Development</h3>
-                    <p class="service__description">Simple, clean, responsive websites that convert.</p>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="/images/web.jpg" alt="Website Design & Development" />
+                    </div>
+                    <h3>Website Design & Development</h3>
+                    <p>Custom websites that are fast, responsive, and optimized for conversions and user experience.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="stats section" id="stats">
+    <section class="stats">
         <div class="container">
-            <h2 class="section__title">Why Choose Us</h2>
-            <div class="stats__grid">
-                <div class="stat__item" data-aos="zoom-in">
-                    <div class="stat__icon">✅</div>
-                    <div class="stat__number" data-target="43">0</div>
-                    <p class="stat__label">Happy Clients</p>
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number" data-target="43">0</div>
+                    <div class="stat-label">Happy Clients</div>
                 </div>
-                <div class="stat__item" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="stat__icon">✅</div>
-                    <div class="stat__number" data-target="100">0</div>
-                    <p class="stat__label">Projects Delivered</p>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">Projects Delivered</div>
                 </div>
             </div>
-            <div class="stats__features">
-                <div class="feature__item" data-aos="fade-up">
-                    <span class="feature__icon">💰</span>
-                    <span class="feature__text">Transparent Pricing</span>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-image">
+                        <img src="/images/amit.jpg" alt="Amit Sharma" />
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Adloom helped me rank my website on Google within months. Their SEO expertise is outstanding!"</p>
+                        <div class="testimonial-author">
+                            <h4>Amit Sharma</h4>
+                            <span>SEO Client</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature__item" data-aos="fade-up" data-aos-delay="100">
-                    <span class="feature__icon">👥</span>
-                    <span class="feature__text">Direct Founder Involvement</span>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-image">
+                        <img src="/images/deepak.jpg" alt="Deepak Kalra" />
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"My engagement and leads have grown massively! Their social media strategies really work."</p>
+                        <div class="testimonial-author">
+                            <h4>Deepak Kalra</h4>
+                            <span>SMM Client</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature__item" data-aos="fade-up" data-aos-delay="200">
-                    <span class="feature__icon">⏰</span>
-                    <span class="feature__text">Timely Delivery</span>
-                </div>
-                <div class="feature__item" data-aos="fade-up" data-aos-delay="300">
-                    <span class="feature__icon">📈</span>
-                    <span class="feature__text">Growth-Focused Results</span>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-image">
+                        <img src="/images/ritika.jpg" alt="Ritika Chawla" />
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"The logo and brand kit gave my business a full identity boost! Professional and creative work."</p>
+                        <div class="testimonial-author">
+                            <h4>Ritika Chawla</h4>
+                            <span>Branding Client</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact section" id="contact">
+    <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section__title">Contact Us</h2>
-            <div class="contact__content">
-                <div class="contact__info">
-                    <div class="contact__item">
-                        <span class="contact__icon">📧</span>
-                        <a href="mailto:adloom.mediahouse@gmail.com" class="contact__link">adloom.mediahouse@gmail.com</a>
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <a href="mailto:adloom.mediahouse@gmail.com">adloom.mediahouse@gmail.com</a>
                     </div>
-                    <div class="contact__item">
-                        <span class="contact__icon">📞</span>
-                        <a href="tel:+919897682971" class="contact__link">+91-9897682971</a>
+                    <div class="contact-item">
+                        <h3>Phone</h3>
+                        <a href="tel:+919897682971">+91-9897682971</a>
+                        <a href="tel:+917453071764">+91-7453071764</a>
                     </div>
-                    <div class="contact__item">
-                        <span class="contact__icon">📞</span>
-                        <a href="tel:+917453071764" class="contact__link">+91-7453071764</a>
-                    </div>
-                    <div class="contact__social">
-                        <a href="#" class="social__link" target="_blank">
-                            <span class="social__icon">🔗</span>
-                            LinkedIn
-                        </a>
-                        <a href="#" class="social__link" target="_blank">
-                            <span class="social__icon">📷</span>
-                            Instagram
-                        </a>
+                    <div class="contact-item">
+                        <h3>Social Media</h3>
+                        <div class="social-links">
+                            <a href="#" target="_blank">LinkedIn</a>
+                            <a href="#" target="_blank">Instagram</a>
+                        </div>
                     </div>
                 </div>
-                <form class="contact__form" id="contact-form">
-                    <div class="form__group">
-                        <input type="text" id="name" name="name" class="form__input" placeholder="Your Name" required>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
-                    <div class="form__group">
-                        <input type="email" id="email" name="email" class="form__input" placeholder="Your Email" required>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
                     </div>
-                    <div class="form__group">
-                        <textarea id="message" name="message" class="form__textarea" placeholder="Your Message" rows="5" required></textarea>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn form__btn">Send Inquiry</button>
+                    <button type="submit" class="submit-button">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Adloom Mediahouse. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
