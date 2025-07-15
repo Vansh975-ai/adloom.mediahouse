@@ -1,3 +1,11 @@
+// Add at the beginning of the file
+document.addEventListener("DOMContentLoaded", () => {
+  // Add page loaded class to trigger floating animations
+  setTimeout(() => {
+    document.body.classList.add("page-loaded")
+  }, 100)
+})
+
 // Theme Toggle Functionality
 const themeToggle = document.getElementById("themeToggle")
 const body = document.body
@@ -155,7 +163,39 @@ window.addEventListener("scroll", () => {
   }
 })
 
-// Add loading animation
+// Enhanced floating text animation on scroll
+const floatingTextObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = "running"
+      }
+    })
+  },
+  {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  },
+)
+
+// Observe all floating text elements
+document
+  .querySelectorAll(".floating-text, .floating-text-delay-1, .floating-text-delay-2, .floating-text-delay-3")
+  .forEach((el) => {
+    floatingTextObserver.observe(el)
+  })
+
+// Enhanced loading animation
 window.addEventListener("load", () => {
   document.body.classList.add("loaded")
+
+  // Trigger floating animations for visible elements
+  const visibleElements = document.querySelectorAll(
+    ".floating-text, .floating-text-delay-1, .floating-text-delay-2, .floating-text-delay-3",
+  )
+  visibleElements.forEach((el, index) => {
+    setTimeout(() => {
+      el.style.animationPlayState = "running"
+    }, index * 100)
+  })
 })
