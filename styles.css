@@ -2,10 +2,12 @@
 :root {
   --primary-bg: #0d0d0d;
   --secondary-bg: #1a1a1a;
-  --text-primary: #ffffff;
-  --text-secondary: #cccccc;
+  --text-primary: #f5f5f5;
+  --text-secondary: #b8b8b8;
+  --text-muted: #888888;
   --accent-color: #ffd700;
   --accent-hover: #ffc700;
+  --accent-secondary: #ff6b35;
   --border-color: #333333;
   --card-bg: #1f1f1f;
   --shadow: rgba(255, 215, 0, 0.1);
@@ -14,10 +16,12 @@
 .light-theme {
   --primary-bg: #ffffff;
   --secondary-bg: #f8f9fa;
-  --text-primary: #111111;
-  --text-secondary: #666666;
+  --text-primary: #2c2c2c;
+  --text-secondary: #555555;
+  --text-muted: #777777;
   --accent-color: #00bfff;
   --accent-hover: #0099cc;
+  --accent-secondary: #ff6b35;
   --border-color: #e0e0e0;
   --card-bg: #ffffff;
   --shadow: rgba(0, 191, 255, 0.1);
@@ -66,9 +70,13 @@ body {
 }
 
 .logo h2 {
-  color: var(--accent-color);
+  color: var(--text-primary);
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.logo .highlight {
+  color: var(--accent-secondary);
 }
 
 .nav-links {
@@ -254,10 +262,11 @@ section {
 .founder-info p {
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .founder-info span {
-  color: var(--text-primary);
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 
@@ -335,6 +344,7 @@ section {
 .stat-label {
   font-size: 1.2rem;
   color: var(--text-secondary);
+  font-weight: 500;
 }
 
 /* Testimonials Section */
@@ -384,7 +394,7 @@ section {
 }
 
 .testimonial-author span {
-  color: var(--text-secondary);
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 
@@ -418,10 +428,7 @@ section {
   display: block;
   margin-bottom: 0.5rem;
   transition: color 0.3s ease;
-}
-
-.contact-item a:hover {
-  color: var(--accent-color);
+  font-weight: 500;
 }
 
 .social-links {
@@ -471,7 +478,7 @@ section {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .submit-button {
@@ -500,7 +507,7 @@ section {
 }
 
 .footer p {
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 /* Animations */
