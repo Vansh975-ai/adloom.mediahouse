@@ -6,6 +6,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 100)
 })
 
+// Theme Toggle Functionality
+const themeToggle = document.getElementById("themeToggle")
+const body = document.body
+const themeIcon = document.querySelector(".theme-icon")
+
+themeToggle.addEventListener("click", () => {
+  body.classList.toggle("light-theme")
+  body.classList.toggle("dark-theme")
+
+  if (body.classList.contains("light-theme")) {
+    themeIcon.textContent = "☀️"
+    localStorage.setItem("theme", "light")
+  } else {
+    themeIcon.textContent = "🌙"
+    localStorage.setItem("theme", "dark")
+  }
+})
+
+// Load saved theme
+const savedTheme = localStorage.getItem("theme")
+if (savedTheme === "light") {
+  body.classList.remove("dark-theme")
+  body.classList.add("light-theme")
+  themeIcon.textContent = "☀️"
+}
+
 // Smooth Scrolling for Navigation Links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
@@ -120,9 +146,11 @@ mobileMenuToggle.addEventListener("click", () => {
 window.addEventListener("scroll", () => {
   const header = document.querySelector(".header")
   if (window.scrollY > 100) {
-    header.style.backgroundColor = "rgba(255, 255, 255, 0.95)"
+    header.style.backgroundColor = body.classList.contains("light-theme")
+      ? "rgba(255, 255, 255, 0.95)"
+      : "rgba(13, 13, 13, 0.95)"
   } else {
-    header.style.backgroundColor = "#FFFFFF"
+    header.style.backgroundColor = body.classList.contains("light-theme") ? "#FFFFFF" : "#0D0D0D"
   }
 })
 
